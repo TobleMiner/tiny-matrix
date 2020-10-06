@@ -1,0 +1,1326 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 9
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Sheet
+S 1500 1100 550  1250
+U 5F7BF8EE
+F0 "Column 0" 50
+F1 "column.sch" 50
+F2 "A0" I L 1500 1200 50 
+F3 "A1" I L 1500 1350 50 
+F4 "A2" I L 1500 1500 50 
+F5 "A3" I L 1500 1650 50 
+F6 "A4" I L 1500 1800 50 
+F7 "A5" I L 1500 1950 50 
+F8 "A6" I L 1500 2100 50 
+F9 "A7" I L 1500 2250 50 
+F10 "K" I R 2050 2250 50 
+$EndSheet
+Wire Wire Line
+	1500 1200 1250 1200
+Text Label 1250 1200 0    50   ~ 0
+A8
+Wire Wire Line
+	1500 1350 1250 1350
+Text Label 1250 1350 0    50   ~ 0
+A1
+Wire Wire Line
+	1500 1500 1250 1500
+Text Label 1250 1500 0    50   ~ 0
+A2
+Wire Wire Line
+	1500 1650 1250 1650
+Text Label 1250 1650 0    50   ~ 0
+A3
+Wire Wire Line
+	1500 1800 1250 1800
+Text Label 1250 1800 0    50   ~ 0
+A4
+Wire Wire Line
+	1500 1950 1250 1950
+Text Label 1250 1950 0    50   ~ 0
+A5
+Wire Wire Line
+	1500 2100 1250 2100
+Text Label 1250 2100 0    50   ~ 0
+A6
+Wire Wire Line
+	1500 2250 1250 2250
+Text Label 1250 2250 0    50   ~ 0
+A7
+Wire Wire Line
+	2050 2250 2300 2250
+Text Label 2300 2250 2    50   ~ 0
+K0
+$Sheet
+S 2700 1100 550  1250
+U 5F7C0ACE
+F0 "Column 1" 50
+F1 "column.sch" 50
+F2 "A0" I L 2700 1200 50 
+F3 "A1" I L 2700 1350 50 
+F4 "A2" I L 2700 1500 50 
+F5 "A3" I L 2700 1650 50 
+F6 "A4" I L 2700 1800 50 
+F7 "A5" I L 2700 1950 50 
+F8 "A6" I L 2700 2100 50 
+F9 "A7" I L 2700 2250 50 
+F10 "K" I R 3250 2250 50 
+$EndSheet
+Wire Wire Line
+	2700 1200 2450 1200
+Text Label 2450 1200 0    50   ~ 0
+A0
+Wire Wire Line
+	2700 1350 2450 1350
+Text Label 2450 1350 0    50   ~ 0
+A8
+Wire Wire Line
+	2700 1500 2450 1500
+Text Label 2450 1500 0    50   ~ 0
+A2
+Wire Wire Line
+	2700 1650 2450 1650
+Text Label 2450 1650 0    50   ~ 0
+A3
+Wire Wire Line
+	2700 1800 2450 1800
+Text Label 2450 1800 0    50   ~ 0
+A4
+Wire Wire Line
+	2700 1950 2450 1950
+Text Label 2450 1950 0    50   ~ 0
+A5
+Wire Wire Line
+	2700 2100 2450 2100
+Text Label 2450 2100 0    50   ~ 0
+A6
+Wire Wire Line
+	2700 2250 2450 2250
+Text Label 2450 2250 0    50   ~ 0
+A7
+Wire Wire Line
+	3250 2250 3500 2250
+Text Label 3500 2250 2    50   ~ 0
+K1
+$Sheet
+S 3900 1100 550  1250
+U 5F7C0E9B
+F0 "Column 2" 50
+F1 "column.sch" 50
+F2 "A0" I L 3900 1200 50 
+F3 "A1" I L 3900 1350 50 
+F4 "A2" I L 3900 1500 50 
+F5 "A3" I L 3900 1650 50 
+F6 "A4" I L 3900 1800 50 
+F7 "A5" I L 3900 1950 50 
+F8 "A6" I L 3900 2100 50 
+F9 "A7" I L 3900 2250 50 
+F10 "K" I R 4450 2250 50 
+$EndSheet
+Wire Wire Line
+	3900 1200 3650 1200
+Text Label 3650 1200 0    50   ~ 0
+A0
+Wire Wire Line
+	3900 1350 3650 1350
+Text Label 3650 1350 0    50   ~ 0
+A1
+Wire Wire Line
+	3900 1500 3650 1500
+Text Label 3650 1500 0    50   ~ 0
+A8
+Wire Wire Line
+	3900 1650 3650 1650
+Text Label 3650 1650 0    50   ~ 0
+A3
+Wire Wire Line
+	3900 1800 3650 1800
+Text Label 3650 1800 0    50   ~ 0
+A4
+Wire Wire Line
+	3900 1950 3650 1950
+Text Label 3650 1950 0    50   ~ 0
+A5
+Wire Wire Line
+	3900 2100 3650 2100
+Text Label 3650 2100 0    50   ~ 0
+A6
+Wire Wire Line
+	3900 2250 3650 2250
+Text Label 3650 2250 0    50   ~ 0
+A7
+Wire Wire Line
+	4450 2250 4700 2250
+Text Label 4700 2250 2    50   ~ 0
+K2
+$Sheet
+S 5100 1100 550  1250
+U 5F7C1909
+F0 "Column 3" 50
+F1 "column.sch" 50
+F2 "A0" I L 5100 1200 50 
+F3 "A1" I L 5100 1350 50 
+F4 "A2" I L 5100 1500 50 
+F5 "A3" I L 5100 1650 50 
+F6 "A4" I L 5100 1800 50 
+F7 "A5" I L 5100 1950 50 
+F8 "A6" I L 5100 2100 50 
+F9 "A7" I L 5100 2250 50 
+F10 "K" I R 5650 2250 50 
+$EndSheet
+Wire Wire Line
+	5100 1200 4850 1200
+Text Label 4850 1200 0    50   ~ 0
+A0
+Wire Wire Line
+	5100 1350 4850 1350
+Text Label 4850 1350 0    50   ~ 0
+A1
+Wire Wire Line
+	5100 1500 4850 1500
+Text Label 4850 1500 0    50   ~ 0
+A2
+Wire Wire Line
+	5100 1650 4850 1650
+Text Label 4850 1650 0    50   ~ 0
+A8
+Wire Wire Line
+	5100 1800 4850 1800
+Text Label 4850 1800 0    50   ~ 0
+A4
+Wire Wire Line
+	5100 1950 4850 1950
+Text Label 4850 1950 0    50   ~ 0
+A5
+Wire Wire Line
+	5100 2100 4850 2100
+Text Label 4850 2100 0    50   ~ 0
+A6
+Wire Wire Line
+	5100 2250 4850 2250
+Text Label 4850 2250 0    50   ~ 0
+A7
+Wire Wire Line
+	5650 2250 5900 2250
+Text Label 5900 2250 2    50   ~ 0
+K3
+$Sheet
+S 6250 1100 550  1250
+U 5F7C241C
+F0 "Column 4" 50
+F1 "column.sch" 50
+F2 "A0" I L 6250 1200 50 
+F3 "A1" I L 6250 1350 50 
+F4 "A2" I L 6250 1500 50 
+F5 "A3" I L 6250 1650 50 
+F6 "A4" I L 6250 1800 50 
+F7 "A5" I L 6250 1950 50 
+F8 "A6" I L 6250 2100 50 
+F9 "A7" I L 6250 2250 50 
+F10 "K" I R 6800 2250 50 
+$EndSheet
+Wire Wire Line
+	6250 1200 6000 1200
+Text Label 6000 1200 0    50   ~ 0
+A0
+Wire Wire Line
+	6250 1350 6000 1350
+Text Label 6000 1350 0    50   ~ 0
+A1
+Wire Wire Line
+	6250 1500 6000 1500
+Text Label 6000 1500 0    50   ~ 0
+A2
+Wire Wire Line
+	6250 1650 6000 1650
+Text Label 6000 1650 0    50   ~ 0
+A3
+Wire Wire Line
+	6250 1800 6000 1800
+Text Label 6000 1800 0    50   ~ 0
+A8
+Wire Wire Line
+	6250 1950 6000 1950
+Text Label 6000 1950 0    50   ~ 0
+A5
+Wire Wire Line
+	6250 2100 6000 2100
+Text Label 6000 2100 0    50   ~ 0
+A6
+Wire Wire Line
+	6250 2250 6000 2250
+Text Label 6000 2250 0    50   ~ 0
+A7
+Wire Wire Line
+	6800 2250 7050 2250
+Text Label 7050 2250 2    50   ~ 0
+K4
+$Sheet
+S 7400 1100 550  1250
+U 5F7C324C
+F0 "Column 5" 50
+F1 "column.sch" 50
+F2 "A0" I L 7400 1200 50 
+F3 "A1" I L 7400 1350 50 
+F4 "A2" I L 7400 1500 50 
+F5 "A3" I L 7400 1650 50 
+F6 "A4" I L 7400 1800 50 
+F7 "A5" I L 7400 1950 50 
+F8 "A6" I L 7400 2100 50 
+F9 "A7" I L 7400 2250 50 
+F10 "K" I R 7950 2250 50 
+$EndSheet
+Wire Wire Line
+	7400 1200 7150 1200
+Text Label 7150 1200 0    50   ~ 0
+A0
+Wire Wire Line
+	7400 1350 7150 1350
+Text Label 7150 1350 0    50   ~ 0
+A1
+Wire Wire Line
+	7400 1500 7150 1500
+Text Label 7150 1500 0    50   ~ 0
+A2
+Wire Wire Line
+	7400 1650 7150 1650
+Text Label 7150 1650 0    50   ~ 0
+A3
+Wire Wire Line
+	7400 1800 7150 1800
+Text Label 7150 1800 0    50   ~ 0
+A4
+Wire Wire Line
+	7400 1950 7150 1950
+Text Label 7150 1950 0    50   ~ 0
+A8
+Wire Wire Line
+	7400 2100 7150 2100
+Text Label 7150 2100 0    50   ~ 0
+A6
+Wire Wire Line
+	7400 2250 7150 2250
+Text Label 7150 2250 0    50   ~ 0
+A7
+Wire Wire Line
+	7950 2250 8200 2250
+Text Label 8200 2250 2    50   ~ 0
+K5
+$Sheet
+S 8600 1100 550  1250
+U 5F7C47F7
+F0 "Column 6" 50
+F1 "column.sch" 50
+F2 "A0" I L 8600 1200 50 
+F3 "A1" I L 8600 1350 50 
+F4 "A2" I L 8600 1500 50 
+F5 "A3" I L 8600 1650 50 
+F6 "A4" I L 8600 1800 50 
+F7 "A5" I L 8600 1950 50 
+F8 "A6" I L 8600 2100 50 
+F9 "A7" I L 8600 2250 50 
+F10 "K" I R 9150 2250 50 
+$EndSheet
+Wire Wire Line
+	8600 1200 8350 1200
+Text Label 8350 1200 0    50   ~ 0
+A0
+Wire Wire Line
+	8600 1350 8350 1350
+Text Label 8350 1350 0    50   ~ 0
+A1
+Wire Wire Line
+	8600 1500 8350 1500
+Text Label 8350 1500 0    50   ~ 0
+A2
+Wire Wire Line
+	8600 1650 8350 1650
+Text Label 8350 1650 0    50   ~ 0
+A3
+Wire Wire Line
+	8600 1800 8350 1800
+Text Label 8350 1800 0    50   ~ 0
+A4
+Wire Wire Line
+	8600 1950 8350 1950
+Text Label 8350 1950 0    50   ~ 0
+A5
+Wire Wire Line
+	8600 2100 8350 2100
+Text Label 8350 2100 0    50   ~ 0
+A8
+Wire Wire Line
+	8600 2250 8350 2250
+Text Label 8350 2250 0    50   ~ 0
+A7
+Wire Wire Line
+	9150 2250 9400 2250
+Text Label 9400 2250 2    50   ~ 0
+K6
+$Sheet
+S 9800 1100 550  1250
+U 5F7C7FAB
+F0 "sheet5F7C7FA0" 50
+F1 "column.sch" 50
+F2 "A0" I L 9800 1200 50 
+F3 "A1" I L 9800 1350 50 
+F4 "A2" I L 9800 1500 50 
+F5 "A3" I L 9800 1650 50 
+F6 "A4" I L 9800 1800 50 
+F7 "A5" I L 9800 1950 50 
+F8 "A6" I L 9800 2100 50 
+F9 "A7" I L 9800 2250 50 
+F10 "K" I R 10350 2250 50 
+$EndSheet
+Wire Wire Line
+	9800 1200 9550 1200
+Text Label 9550 1200 0    50   ~ 0
+A0
+Wire Wire Line
+	9800 1350 9550 1350
+Text Label 9550 1350 0    50   ~ 0
+A1
+Wire Wire Line
+	9800 1500 9550 1500
+Text Label 9550 1500 0    50   ~ 0
+A2
+Wire Wire Line
+	9800 1650 9550 1650
+Text Label 9550 1650 0    50   ~ 0
+A3
+Wire Wire Line
+	9800 1800 9550 1800
+Text Label 9550 1800 0    50   ~ 0
+A4
+Wire Wire Line
+	9800 1950 9550 1950
+Text Label 9550 1950 0    50   ~ 0
+A5
+Wire Wire Line
+	9800 2100 9550 2100
+Text Label 9550 2100 0    50   ~ 0
+A6
+Wire Wire Line
+	9800 2250 9550 2250
+Text Label 9550 2250 0    50   ~ 0
+A8
+Wire Wire Line
+	10350 2250 10600 2250
+Text Label 10600 2250 2    50   ~ 0
+K7
+$Comp
+L Connector:TestPoint TP1
+U 1 1 5F7CFB4D
+P 1600 3150
+F 0 "TP1" V 1600 3550 50  0000 R CNN
+F 1 "TestPoint" V 1700 3550 50  0000 R CNN
+F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 1800 3150 50  0001 C CNN
+F 3 "~" H 1800 3150 50  0001 C CNN
+	1    1600 3150
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	1600 3150 1750 3150
+Text Label 1750 3150 2    50   ~ 0
+A0
+$Comp
+L Connector:TestPoint TP2
+U 1 1 5F7E2E77
+P 1600 3350
+F 0 "TP2" V 1600 3750 50  0000 R CNN
+F 1 "TestPoint" V 1700 3750 50  0000 R CNN
+F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 1800 3350 50  0001 C CNN
+F 3 "~" H 1800 3350 50  0001 C CNN
+	1    1600 3350
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	1600 3350 1750 3350
+Text Label 1750 3350 2    50   ~ 0
+A1
+$Comp
+L Connector:TestPoint TP3
+U 1 1 5F7E53D9
+P 1600 3550
+F 0 "TP3" V 1600 3950 50  0000 R CNN
+F 1 "TestPoint" V 1700 3950 50  0000 R CNN
+F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 1800 3550 50  0001 C CNN
+F 3 "~" H 1800 3550 50  0001 C CNN
+	1    1600 3550
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	1600 3550 1750 3550
+Text Label 1750 3550 2    50   ~ 0
+A2
+$Comp
+L Connector:TestPoint TP4
+U 1 1 5F7EA008
+P 1600 3750
+F 0 "TP4" V 1600 4150 50  0000 R CNN
+F 1 "TestPoint" V 1700 4150 50  0000 R CNN
+F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 1800 3750 50  0001 C CNN
+F 3 "~" H 1800 3750 50  0001 C CNN
+	1    1600 3750
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	1600 3750 1750 3750
+Text Label 1750 3750 2    50   ~ 0
+A3
+$Comp
+L Connector:TestPoint TP5
+U 1 1 5F7EC70E
+P 1600 3950
+F 0 "TP5" V 1600 4350 50  0000 R CNN
+F 1 "TestPoint" V 1700 4350 50  0000 R CNN
+F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 1800 3950 50  0001 C CNN
+F 3 "~" H 1800 3950 50  0001 C CNN
+	1    1600 3950
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	1600 3950 1750 3950
+Text Label 1750 3950 2    50   ~ 0
+A4
+$Comp
+L Connector:TestPoint TP6
+U 1 1 5F7EF045
+P 1600 4150
+F 0 "TP6" V 1600 4550 50  0000 R CNN
+F 1 "TestPoint" V 1700 4550 50  0000 R CNN
+F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 1800 4150 50  0001 C CNN
+F 3 "~" H 1800 4150 50  0001 C CNN
+	1    1600 4150
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	1600 4150 1750 4150
+Text Label 1750 4150 2    50   ~ 0
+A5
+$Comp
+L Connector:TestPoint TP7
+U 1 1 5F7F1A61
+P 1600 4350
+F 0 "TP7" V 1600 4750 50  0000 R CNN
+F 1 "TestPoint" V 1700 4750 50  0000 R CNN
+F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 1800 4350 50  0001 C CNN
+F 3 "~" H 1800 4350 50  0001 C CNN
+	1    1600 4350
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	1600 4350 1750 4350
+Text Label 1750 4350 2    50   ~ 0
+A6
+$Comp
+L Connector:TestPoint TP8
+U 1 1 5F7F45DA
+P 1600 4550
+F 0 "TP8" V 1600 4950 50  0000 R CNN
+F 1 "TestPoint" V 1700 4950 50  0000 R CNN
+F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 1800 4550 50  0001 C CNN
+F 3 "~" H 1800 4550 50  0001 C CNN
+	1    1600 4550
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	1600 4550 1750 4550
+Text Label 1750 4550 2    50   ~ 0
+A7
+$Comp
+L Connector:TestPoint TP9
+U 1 1 5F7F7323
+P 1600 4750
+F 0 "TP9" V 1600 5150 50  0000 R CNN
+F 1 "TestPoint" V 1700 5150 50  0000 R CNN
+F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 1800 4750 50  0001 C CNN
+F 3 "~" H 1800 4750 50  0001 C CNN
+	1    1600 4750
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	1600 4750 1750 4750
+Text Label 1750 4750 2    50   ~ 0
+A8
+$Comp
+L Connector:TestPoint TP10
+U 1 1 5F7FCE7B
+P 1850 5000
+F 0 "TP10" V 1850 5400 50  0000 R CNN
+F 1 "TestPoint" V 1950 5400 50  0000 R CNN
+F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 2050 5000 50  0001 C CNN
+F 3 "~" H 2050 5000 50  0001 C CNN
+	1    1850 5000
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	1850 5000 1850 4850
+Text Label 1850 4850 3    50   ~ 0
+K0
+$Comp
+L Connector:TestPoint TP11
+U 1 1 5F7FCE83
+P 2050 5000
+F 0 "TP11" V 2050 5400 50  0000 R CNN
+F 1 "TestPoint" V 2150 5400 50  0000 R CNN
+F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 2250 5000 50  0001 C CNN
+F 3 "~" H 2250 5000 50  0001 C CNN
+	1    2050 5000
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	2050 5000 2050 4850
+Text Label 2050 4850 3    50   ~ 0
+K1
+$Comp
+L Connector:TestPoint TP12
+U 1 1 5F7FCE8B
+P 2250 5000
+F 0 "TP12" V 2250 5400 50  0000 R CNN
+F 1 "TestPoint" V 2350 5400 50  0000 R CNN
+F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 2450 5000 50  0001 C CNN
+F 3 "~" H 2450 5000 50  0001 C CNN
+	1    2250 5000
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	2250 5000 2250 4850
+Text Label 2250 4850 3    50   ~ 0
+K2
+$Comp
+L Connector:TestPoint TP13
+U 1 1 5F7FCE93
+P 2450 5000
+F 0 "TP13" V 2450 5400 50  0000 R CNN
+F 1 "TestPoint" V 2550 5400 50  0000 R CNN
+F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 2650 5000 50  0001 C CNN
+F 3 "~" H 2650 5000 50  0001 C CNN
+	1    2450 5000
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	2450 5000 2450 4850
+Text Label 2450 4850 3    50   ~ 0
+K3
+$Comp
+L Connector:TestPoint TP14
+U 1 1 5F7FCE9B
+P 2650 5000
+F 0 "TP14" V 2650 5400 50  0000 R CNN
+F 1 "TestPoint" V 2750 5400 50  0000 R CNN
+F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 2850 5000 50  0001 C CNN
+F 3 "~" H 2850 5000 50  0001 C CNN
+	1    2650 5000
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	2650 5000 2650 4850
+Text Label 2650 4850 3    50   ~ 0
+K4
+$Comp
+L Connector:TestPoint TP15
+U 1 1 5F7FCEA3
+P 2850 5000
+F 0 "TP15" V 2850 5400 50  0000 R CNN
+F 1 "TestPoint" V 2950 5400 50  0000 R CNN
+F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 3050 5000 50  0001 C CNN
+F 3 "~" H 3050 5000 50  0001 C CNN
+	1    2850 5000
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	2850 5000 2850 4850
+Text Label 2850 4850 3    50   ~ 0
+K5
+$Comp
+L Connector:TestPoint TP16
+U 1 1 5F7FCEAB
+P 3050 5000
+F 0 "TP16" V 3050 5400 50  0000 R CNN
+F 1 "TestPoint" V 3150 5400 50  0000 R CNN
+F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 3250 5000 50  0001 C CNN
+F 3 "~" H 3250 5000 50  0001 C CNN
+	1    3050 5000
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	3050 5000 3050 4850
+Text Label 3050 4850 3    50   ~ 0
+K6
+$Comp
+L Connector:TestPoint TP17
+U 1 1 5F7FCEB3
+P 3250 5000
+F 0 "TP17" V 3250 5400 50  0000 R CNN
+F 1 "TestPoint" V 3350 5400 50  0000 R CNN
+F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 3450 5000 50  0001 C CNN
+F 3 "~" H 3450 5000 50  0001 C CNN
+	1    3250 5000
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	3250 5000 3250 4850
+Text Label 3250 4850 3    50   ~ 0
+K7
+$Comp
+L MCU_ST_STM32F0:STM32F030F4Px U1
+U 1 1 5F80C142
+P 6200 4450
+F 0 "U1" V 6150 4450 50  0000 C CNN
+F 1 "STM32F030F4Px" V 6250 4450 50  0000 C CNN
+F 2 "Package_SO:TSSOP-20_4.4x6.5mm_P0.65mm" H 5800 3750 50  0001 R CNN
+F 3 "http://www.st.com/st-web-ui/static/active/en/resource/technical/document/datasheet/DM00088500.pdf" H 6200 4450 50  0001 C CNN
+F 4 "C89040" H 6200 4450 50  0001 C CNN "LCSC"
+	1    6200 4450
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_Pack04 RN1
+U 1 1 5F80CF21
+P 7100 4150
+F 0 "RN1" V 6683 4150 50  0000 C CNN
+F 1 "1kR" V 6774 4150 50  0000 C CNN
+F 2 "Resistor_SMD:R_Array_Concave_4x0402" V 7375 4150 50  0001 C CNN
+F 3 "~" H 7100 4150 50  0001 C CNN
+F 4 "C25726" V 7100 4150 50  0001 C CNN "LCSC"
+	1    7100 4150
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R_Pack04 RN2
+U 1 1 5F811234
+P 7100 4450
+F 0 "RN2" V 7050 4200 50  0000 C CNN
+F 1 "1kR" V 7150 4200 50  0000 C CNN
+F 2 "Resistor_SMD:R_Array_Concave_4x0402" V 7375 4450 50  0001 C CNN
+F 3 "~" H 7100 4450 50  0001 C CNN
+F 4 "C25726" V 7100 4450 50  0001 C CNN "LCSC"
+	1    7100 4450
+	0    1    -1   0   
+$EndComp
+Text Label 6750 3950 0    50   ~ 0
+K0
+Wire Wire Line
+	6700 3950 6900 3950
+Text Label 6750 4050 0    50   ~ 0
+K1
+Wire Wire Line
+	6700 4050 6900 4050
+Text Label 6750 4150 0    50   ~ 0
+K2
+Wire Wire Line
+	6700 4150 6900 4150
+Text Label 6750 4250 0    50   ~ 0
+K3
+Wire Wire Line
+	6700 4250 6900 4250
+Text Label 6750 4350 0    50   ~ 0
+K4
+Wire Wire Line
+	6700 4350 6900 4350
+Text Label 6750 4450 0    50   ~ 0
+K5
+Wire Wire Line
+	6700 4450 6900 4450
+Text Label 6750 4550 0    50   ~ 0
+K6
+Wire Wire Line
+	6700 4550 6900 4550
+Text Label 6750 4650 0    50   ~ 0
+K7
+Wire Wire Line
+	6700 4650 6900 4650
+$Comp
+L Device:R R1
+U 1 1 5F837294
+P 7100 4750
+F 0 "R1" V 7250 4750 50  0000 C CNN
+F 1 "1kR" V 7350 4750 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" V 7030 4750 50  0001 C CNN
+F 3 "~" H 7100 4750 50  0001 C CNN
+F 4 "C11702" V 7100 4750 50  0001 C CNN "LCSC"
+	1    7100 4750
+	0    -1   1    0   
+$EndComp
+Wire Wire Line
+	6950 4750 6700 4750
+Wire Wire Line
+	7300 3950 7500 3950
+Text Label 7500 3950 2    50   ~ 0
+A0
+Wire Wire Line
+	7300 4050 7500 4050
+Text Label 7500 4050 2    50   ~ 0
+A1
+Wire Wire Line
+	7300 4150 7500 4150
+Text Label 7500 4150 2    50   ~ 0
+A2
+Wire Wire Line
+	7300 4250 7500 4250
+Text Label 7500 4250 2    50   ~ 0
+A3
+Wire Wire Line
+	7300 4350 7500 4350
+Text Label 7500 4350 2    50   ~ 0
+A4
+Wire Wire Line
+	7300 4450 7500 4450
+Text Label 7500 4450 2    50   ~ 0
+A5
+Wire Wire Line
+	7300 4550 7500 4550
+Text Label 7500 4550 2    50   ~ 0
+A6
+Wire Wire Line
+	7300 4650 7500 4650
+Text Label 7500 4650 2    50   ~ 0
+A7
+Text Label 7500 4750 2    50   ~ 0
+A8
+Wire Wire Line
+	7250 4750 7500 4750
+$Comp
+L Connector:TestPoint TP18
+U 1 1 5F872132
+P 8800 3600
+F 0 "TP18" V 8800 4000 50  0000 R CNN
+F 1 "TestPoint" V 8900 4000 50  0000 R CNN
+F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 9000 3600 50  0001 C CNN
+F 3 "~" H 9000 3600 50  0001 C CNN
+	1    8800 3600
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	8800 3600 8950 3600
+Text Label 8950 3600 2    50   ~ 0
+A0
+$Comp
+L Connector:TestPoint TP19
+U 1 1 5F87213A
+P 8800 3800
+F 0 "TP19" V 8800 4200 50  0000 R CNN
+F 1 "TestPoint" V 8900 4200 50  0000 R CNN
+F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 9000 3800 50  0001 C CNN
+F 3 "~" H 9000 3800 50  0001 C CNN
+	1    8800 3800
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	8800 3800 8950 3800
+Text Label 8950 3800 2    50   ~ 0
+A1
+$Comp
+L Connector:TestPoint TP20
+U 1 1 5F872142
+P 8800 4000
+F 0 "TP20" V 8800 4400 50  0000 R CNN
+F 1 "TestPoint" V 8900 4400 50  0000 R CNN
+F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 9000 4000 50  0001 C CNN
+F 3 "~" H 9000 4000 50  0001 C CNN
+	1    8800 4000
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	8800 4000 8950 4000
+Text Label 8950 4000 2    50   ~ 0
+A2
+$Comp
+L Connector:TestPoint TP21
+U 1 1 5F87214A
+P 8800 4200
+F 0 "TP21" V 8800 4600 50  0000 R CNN
+F 1 "TestPoint" V 8900 4600 50  0000 R CNN
+F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 9000 4200 50  0001 C CNN
+F 3 "~" H 9000 4200 50  0001 C CNN
+	1    8800 4200
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	8800 4200 8950 4200
+Text Label 8950 4200 2    50   ~ 0
+A3
+$Comp
+L Connector:TestPoint TP22
+U 1 1 5F872152
+P 8800 4400
+F 0 "TP22" V 8800 4800 50  0000 R CNN
+F 1 "TestPoint" V 8900 4800 50  0000 R CNN
+F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 9000 4400 50  0001 C CNN
+F 3 "~" H 9000 4400 50  0001 C CNN
+	1    8800 4400
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	8800 4400 8950 4400
+Text Label 8950 4400 2    50   ~ 0
+A4
+$Comp
+L Connector:TestPoint TP23
+U 1 1 5F87215A
+P 8800 4600
+F 0 "TP23" V 8800 5000 50  0000 R CNN
+F 1 "TestPoint" V 8900 5000 50  0000 R CNN
+F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 9000 4600 50  0001 C CNN
+F 3 "~" H 9000 4600 50  0001 C CNN
+	1    8800 4600
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	8800 4600 8950 4600
+Text Label 8950 4600 2    50   ~ 0
+A5
+$Comp
+L Connector:TestPoint TP24
+U 1 1 5F872162
+P 8800 4800
+F 0 "TP24" V 8800 5200 50  0000 R CNN
+F 1 "TestPoint" V 8900 5200 50  0000 R CNN
+F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 9000 4800 50  0001 C CNN
+F 3 "~" H 9000 4800 50  0001 C CNN
+	1    8800 4800
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	8800 4800 8950 4800
+Text Label 8950 4800 2    50   ~ 0
+A6
+$Comp
+L Connector:TestPoint TP25
+U 1 1 5F87216A
+P 8800 5000
+F 0 "TP25" V 8800 5400 50  0000 R CNN
+F 1 "TestPoint" V 8900 5400 50  0000 R CNN
+F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 9000 5000 50  0001 C CNN
+F 3 "~" H 9000 5000 50  0001 C CNN
+	1    8800 5000
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	8800 5000 8950 5000
+Text Label 8950 5000 2    50   ~ 0
+A7
+$Comp
+L Connector:TestPoint TP26
+U 1 1 5F872172
+P 8800 5200
+F 0 "TP26" V 8800 5600 50  0000 R CNN
+F 1 "TestPoint" V 8900 5600 50  0000 R CNN
+F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 9000 5200 50  0001 C CNN
+F 3 "~" H 9000 5200 50  0001 C CNN
+	1    8800 5200
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	8800 5200 8950 5200
+Text Label 8950 5200 2    50   ~ 0
+A8
+$Comp
+L Connector:TestPoint TP27
+U 1 1 5F87217A
+P 9050 5450
+F 0 "TP27" V 9050 5850 50  0000 R CNN
+F 1 "TestPoint" V 9150 5850 50  0000 R CNN
+F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 9250 5450 50  0001 C CNN
+F 3 "~" H 9250 5450 50  0001 C CNN
+	1    9050 5450
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	9050 5450 9050 5300
+Text Label 9050 5300 3    50   ~ 0
+K0
+$Comp
+L Connector:TestPoint TP28
+U 1 1 5F872182
+P 9250 5450
+F 0 "TP28" V 9250 5850 50  0000 R CNN
+F 1 "TestPoint" V 9350 5850 50  0000 R CNN
+F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 9450 5450 50  0001 C CNN
+F 3 "~" H 9450 5450 50  0001 C CNN
+	1    9250 5450
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	9250 5450 9250 5300
+Text Label 9250 5300 3    50   ~ 0
+K1
+$Comp
+L Connector:TestPoint TP29
+U 1 1 5F87218A
+P 9450 5450
+F 0 "TP29" V 9450 5850 50  0000 R CNN
+F 1 "TestPoint" V 9550 5850 50  0000 R CNN
+F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 9650 5450 50  0001 C CNN
+F 3 "~" H 9650 5450 50  0001 C CNN
+	1    9450 5450
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	9450 5450 9450 5300
+Text Label 9450 5300 3    50   ~ 0
+K2
+$Comp
+L Connector:TestPoint TP30
+U 1 1 5F872192
+P 9650 5450
+F 0 "TP30" V 9650 5850 50  0000 R CNN
+F 1 "TestPoint" V 9750 5850 50  0000 R CNN
+F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 9850 5450 50  0001 C CNN
+F 3 "~" H 9850 5450 50  0001 C CNN
+	1    9650 5450
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	9650 5450 9650 5300
+Text Label 9650 5300 3    50   ~ 0
+K3
+$Comp
+L Connector:TestPoint TP31
+U 1 1 5F87219A
+P 9850 5450
+F 0 "TP31" V 9850 5850 50  0000 R CNN
+F 1 "TestPoint" V 9950 5850 50  0000 R CNN
+F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 10050 5450 50  0001 C CNN
+F 3 "~" H 10050 5450 50  0001 C CNN
+	1    9850 5450
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	9850 5450 9850 5300
+Text Label 9850 5300 3    50   ~ 0
+K4
+$Comp
+L Connector:TestPoint TP32
+U 1 1 5F8721A2
+P 10050 5450
+F 0 "TP32" V 10050 5850 50  0000 R CNN
+F 1 "TestPoint" V 10150 5850 50  0000 R CNN
+F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 10250 5450 50  0001 C CNN
+F 3 "~" H 10250 5450 50  0001 C CNN
+	1    10050 5450
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	10050 5450 10050 5300
+Text Label 10050 5300 3    50   ~ 0
+K5
+$Comp
+L Connector:TestPoint TP33
+U 1 1 5F8721AA
+P 10250 5450
+F 0 "TP33" V 10250 5850 50  0000 R CNN
+F 1 "TestPoint" V 10350 5850 50  0000 R CNN
+F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 10450 5450 50  0001 C CNN
+F 3 "~" H 10450 5450 50  0001 C CNN
+	1    10250 5450
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	10250 5450 10250 5300
+Text Label 10250 5300 3    50   ~ 0
+K6
+$Comp
+L Connector:TestPoint TP34
+U 1 1 5F8721B2
+P 10450 5450
+F 0 "TP34" V 10450 5850 50  0000 R CNN
+F 1 "TestPoint" V 10550 5850 50  0000 R CNN
+F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 10650 5450 50  0001 C CNN
+F 3 "~" H 10650 5450 50  0001 C CNN
+	1    10450 5450
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	10450 5450 10450 5300
+Text Label 10450 5300 3    50   ~ 0
+K7
+$Comp
+L Device:C C3
+U 1 1 5F878210
+P 6500 3600
+F 0 "C3" V 6248 3600 50  0000 C CNN
+F 1 "100nF" V 6339 3600 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0402_1005Metric" H 6538 3450 50  0001 C CNN
+F 3 "~" H 6500 3600 50  0001 C CNN
+F 4 "C1525" V 6500 3600 50  0001 C CNN "LCSC"
+	1    6500 3600
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:C C2
+U 1 1 5F878FFE
+P 6000 3600
+F 0 "C2" V 5748 3600 50  0000 C CNN
+F 1 "100nF" V 5839 3600 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0402_1005Metric" H 6038 3450 50  0001 C CNN
+F 3 "~" H 6000 3600 50  0001 C CNN
+F 4 "C1525" V 6000 3600 50  0001 C CNN "LCSC"
+	1    6000 3600
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	6300 3750 6300 3600
+Wire Wire Line
+	6300 3600 6350 3600
+Wire Wire Line
+	6200 3750 6200 3600
+Wire Wire Line
+	6200 3600 6150 3600
+$Comp
+L power:GND #PWR0101
+U 1 1 5F88962E
+P 6700 3650
+F 0 "#PWR0101" H 6700 3400 50  0001 C CNN
+F 1 "GND" H 6705 3477 50  0000 C CNN
+F 2 "" H 6700 3650 50  0001 C CNN
+F 3 "" H 6700 3650 50  0001 C CNN
+	1    6700 3650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6700 3650 6700 3600
+Wire Wire Line
+	6700 3600 6650 3600
+$Comp
+L power:GND #PWR0102
+U 1 1 5F88F757
+P 5700 3650
+F 0 "#PWR0102" H 5700 3400 50  0001 C CNN
+F 1 "GND" H 5705 3477 50  0000 C CNN
+F 2 "" H 5700 3650 50  0001 C CNN
+F 3 "" H 5700 3650 50  0001 C CNN
+	1    5700 3650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5700 3650 5700 3600
+Wire Wire Line
+	5700 3600 5850 3600
+$Comp
+L Device:C C1
+U 1 1 5F895F19
+P 6000 3200
+F 0 "C1" V 5748 3200 50  0000 C CNN
+F 1 "10uF" V 5839 3200 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0402_1005Metric" H 6038 3050 50  0001 C CNN
+F 3 "~" H 6000 3200 50  0001 C CNN
+F 4 "C15525" V 6000 3200 50  0001 C CNN "LCSC"
+	1    6000 3200
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	5850 3200 5700 3200
+Wire Wire Line
+	5700 3200 5700 3600
+Connection ~ 5700 3600
+Wire Wire Line
+	6150 3200 6200 3200
+Wire Wire Line
+	6200 3200 6200 3600
+Connection ~ 6200 3600
+Wire Wire Line
+	6300 3600 6300 3200
+Wire Wire Line
+	6300 3200 6200 3200
+Connection ~ 6300 3600
+Connection ~ 6200 3200
+$Comp
+L power:+3V0 #PWR0103
+U 1 1 5F8A93AC
+P 6300 3100
+F 0 "#PWR0103" H 6300 2950 50  0001 C CNN
+F 1 "+3V0" H 6315 3273 50  0000 C CNN
+F 2 "" H 6300 3100 50  0001 C CNN
+F 3 "" H 6300 3100 50  0001 C CNN
+	1    6300 3100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6300 3100 6300 3200
+Connection ~ 6300 3200
+$Comp
+L Connector_TagConnect:TagConnect_TC2030_SWD J1
+U 1 1 5F8B1226
+P 6250 5900
+F 0 "J1" H 6250 6225 50  0000 C CNN
+F 1 "TagConnect_TC2030_SWD" H 6250 6134 50  0000 C CNN
+F 2 "Connector:Tag-Connect_TC2030-IDC-NL_2x03_P1.27mm_Vertical" H 6250 5900 50  0001 C CNN
+F 3 "" H 6250 5900 50  0001 C CNN
+	1    6250 5900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6750 5800 6850 5800
+Wire Wire Line
+	6850 5800 6850 4950
+Wire Wire Line
+	6850 4950 6700 4950
+Wire Wire Line
+	6700 5050 6950 5050
+Wire Wire Line
+	6950 5050 6950 5900
+Wire Wire Line
+	6950 5900 6750 5900
+NoConn ~ 6750 6000
+$Comp
+L power:GND #PWR0104
+U 1 1 5F8C5FFB
+P 5700 6050
+F 0 "#PWR0104" H 5700 5800 50  0001 C CNN
+F 1 "GND" H 5705 5877 50  0000 C CNN
+F 2 "" H 5700 6050 50  0001 C CNN
+F 3 "" H 5700 6050 50  0001 C CNN
+	1    5700 6050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5700 6050 5700 6000
+Wire Wire Line
+	5700 6000 5750 6000
+$Comp
+L power:+3V0 #PWR0105
+U 1 1 5F8CD77D
+P 5700 5750
+F 0 "#PWR0105" H 5700 5600 50  0001 C CNN
+F 1 "+3V0" H 5715 5923 50  0000 C CNN
+F 2 "" H 5700 5750 50  0001 C CNN
+F 3 "" H 5700 5750 50  0001 C CNN
+	1    5700 5750
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5700 5750 5700 5800
+Wire Wire Line
+	5700 5800 5750 5800
+Wire Wire Line
+	5750 5900 5400 5900
+Wire Wire Line
+	5400 5900 5400 3950
+Wire Wire Line
+	5400 3950 5700 3950
+$Comp
+L power:GND #PWR0106
+U 1 1 5F8E5F78
+P 5650 4200
+F 0 "#PWR0106" H 5650 3950 50  0001 C CNN
+F 1 "GND" H 5655 4027 50  0000 C CNN
+F 2 "" H 5650 4200 50  0001 C CNN
+F 3 "" H 5650 4200 50  0001 C CNN
+	1    5650 4200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5650 4200 5650 4150
+Wire Wire Line
+	5650 4150 5700 4150
+$Comp
+L Connector:TestPoint TP36
+U 1 1 5F8F43CF
+P 7250 4850
+F 0 "TP36" V 7250 5250 50  0000 R CNN
+F 1 "TestPoint" V 7350 5250 50  0000 R CNN
+F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 7450 4850 50  0001 C CNN
+F 3 "~" H 7450 4850 50  0001 C CNN
+	1    7250 4850
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector:TestPoint TP37
+U 1 1 5F8F43C9
+P 7250 5050
+F 0 "TP37" V 7250 5450 50  0000 R CNN
+F 1 "TestPoint" V 7350 5450 50  0000 R CNN
+F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 7450 5050 50  0001 C CNN
+F 3 "~" H 7450 5050 50  0001 C CNN
+	1    7250 5050
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	7250 4850 6700 4850
+$Comp
+L power:GND #PWR0107
+U 1 1 5F91B930
+P 7200 5100
+F 0 "#PWR0107" H 7200 4850 50  0001 C CNN
+F 1 "GND" H 7205 4927 50  0000 C CNN
+F 2 "" H 7200 5100 50  0001 C CNN
+F 3 "" H 7200 5100 50  0001 C CNN
+	1    7200 5100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7200 5100 7200 5050
+Wire Wire Line
+	7200 5050 7250 5050
+$Comp
+L Connector:TestPoint TP35
+U 1 1 5F924312
+P 6550 3200
+F 0 "TP35" V 6550 3600 50  0000 R CNN
+F 1 "TestPoint" V 6650 3600 50  0000 R CNN
+F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 6750 3200 50  0001 C CNN
+F 3 "~" H 6750 3200 50  0001 C CNN
+	1    6550 3200
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	6550 3200 6300 3200
+$Comp
+L Device:C C4
+U 1 1 5F945A76
+P 5250 4150
+F 0 "C4" V 4998 4150 50  0000 C CNN
+F 1 "100nF" V 5089 4150 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0402_1005Metric" H 5288 4000 50  0001 C CNN
+F 3 "~" H 5250 4150 50  0001 C CNN
+F 4 "C1525" V 5250 4150 50  0001 C CNN "LCSC"
+	1    5250 4150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5400 3950 5250 3950
+Wire Wire Line
+	5250 3950 5250 4000
+Connection ~ 5400 3950
+$Comp
+L power:GND #PWR0108
+U 1 1 5F9565E3
+P 5250 4350
+F 0 "#PWR0108" H 5250 4100 50  0001 C CNN
+F 1 "GND" H 5255 4177 50  0000 C CNN
+F 2 "" H 5250 4350 50  0001 C CNN
+F 3 "" H 5250 4350 50  0001 C CNN
+	1    5250 4350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5250 4350 5250 4300
+$Comp
+L power:GND #PWR?
+U 1 1 5F96A67C
+P 6200 5300
+F 0 "#PWR?" H 6200 5050 50  0001 C CNN
+F 1 "GND" H 6205 5127 50  0000 C CNN
+F 2 "" H 6200 5300 50  0001 C CNN
+F 3 "" H 6200 5300 50  0001 C CNN
+	1    6200 5300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6200 5300 6200 5250
+$EndSCHEMATC

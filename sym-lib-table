@@ -1,0 +1,3 @@
+(sym_lib_table
+  (lib (name Connector_TagConnect)(type Legacy)(uri ${KIPRJMOD}/lib/Connector_TagConnect.lib)(options "")(descr ""))
+)
