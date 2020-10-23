@@ -7,6 +7,8 @@ in a 2x3 grid to use the available space on JLC's PCBs more efficinetly.
 The device uses a novel, BGA style assembly procedure to achieve the smallest footprint
 possible.
 
+![matrix animation showcase](/assets/tinymatrix.gif)
+
 # Ordering
 When ordering through JLC there is a small tradeoff to be made. You can either order the
 boards with 1mm thickness and will need to perform a small mechanical modification on
