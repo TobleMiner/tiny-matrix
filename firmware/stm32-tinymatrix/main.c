@@ -9,12 +9,6 @@
 #include <libopencm3/stm32/rcc.h>
 #include <libopencm3/stm32/gpio.h>
 
-static void clock_init(void) {
-	rcc_clock_setup_in_hsi_out_48mhz();
-	rcc_periph_clock_enable(RCC_GPIOA);
-	rcc_periph_clock_enable(RCC_GPIOB);
-}
-
 const uint8_t gamma8[] = {
     0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
     0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  1,  1,  1,  1,
@@ -33,8 +27,6 @@ const uint8_t gamma8[] = {
   177,180,182,184,186,189,191,193,196,198,200,203,205,208,210,213,
   215,218,220,223,225,228,231,233,236,239,241,244,247,249,252,255 };
 
-static uint64_t last_adc_update_g = 0;
-
 uint8_t fb_g[8 * 8] = { 0 };
 
 #define FIELD_SIZE 16
@@ -44,6 +36,12 @@ uint8_t sine_field_g[FIELD_SIZE * FIELD_SIZE];
 
 /* Cycle through all LEDs, one at a time */
 //#define LED_TEST
+
+static void clock_init(void) {
+	rcc_clock_setup_in_hsi_out_48mhz();
+	rcc_periph_clock_enable(RCC_GPIOA);
+	rcc_periph_clock_enable(RCC_GPIOB);
+}
 
 int main(void) {
 	int off_x = 0, off_y = 0, cycles = 0;
