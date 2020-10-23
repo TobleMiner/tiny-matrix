@@ -4,10 +4,10 @@ EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 9
-Title ""
-Date ""
-Rev ""
-Comp ""
+Title "Tiny Matrix"
+Date "2020-10-24"
+Rev "A"
+Comp "Tobias Schramm"
 Comment1 ""
 Comment2 ""
 Comment3 ""
