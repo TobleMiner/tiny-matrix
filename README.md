@@ -32,8 +32,8 @@ Then drag a soldering iron wetted with lots of solder over the testpoints on the
 of the board. This should create fairly uniform solder balls ontop of the pads. Once all
 boards are preapred with solder balls apply more flux and stick one controller board and
 one LED board together. Make sure they are alligned properly. Now you can reflow the two
-boards togeter. You can do this either manually with hot air or on a reflow oven. Situate
-the stacked boards LEDs down, since they are the most temperature-sensitive parts. If you
+boards together. You can do this either manually with hot air or in a reflow oven. Situate
+the stacked boards LEDs down, since they are the most temperature sensitive parts. If you
 have any level of familarity with soldering BGA components you will notice when reflow is
 complete right away. Don't be afraid to heat the boards for a little longer, the STM32F030
 seem to be able to take quite a lot of abuse.
