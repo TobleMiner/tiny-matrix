@@ -39,5 +39,5 @@ complete right away. Don't be afraid to heat the boards for a little longer, the
 seem to be able to take quite a lot of abuse.
 
 # Firmware
-I'll add a small libopencm3 based firmware example to this repo later. Don't expect much or
-even clean code, it will just showcase how to deal with the charlieplexed LEDs.
+The directory `firmware` contains a simple example displaying the pattern from the gif
+above.
