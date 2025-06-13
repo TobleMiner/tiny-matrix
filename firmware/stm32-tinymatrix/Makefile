@@ -16,4 +16,5 @@ OPENCM3_DIR=../libopencm3
 
 include $(OPENCM3_DIR)/mk/genlink-config.mk
 include ../rules.mk
+LDFLAGS += -Wl,--print-memory-usage
 include $(OPENCM3_DIR)/mk/genlink-rules.mk

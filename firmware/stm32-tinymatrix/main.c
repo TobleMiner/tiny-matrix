@@ -9,6 +9,8 @@
 #include <libopencm3/stm32/rcc.h>
 #include <libopencm3/stm32/gpio.h>
 
+#include "game_of_life.h"
+
 const uint8_t gamma8[] = {
     0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
     0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  1,  1,  1,  1,
@@ -29,13 +31,21 @@ const uint8_t gamma8[] = {
 
 uint8_t fb_g[8 * 8] = { 0 };
 
-#define FIELD_SIZE 16
-uint8_t sine_field_g[FIELD_SIZE * FIELD_SIZE];
+uint8_t game_of_life_playfield_a[64 * 64 / 8] = { 0 };
+uint8_t game_of_life_playfield_b[64 * 64 / 8] = { 0 };
+game_of_life_t game_of_life;
 
 #define FIELD_COMPRESSION 1
 
 /* Cycle through all LEDs, one at a time */
 //#define LED_TEST
+//#define SINE_FIELD
+#define GAME_OF_LIFE
+
+#ifdef SINE_FIELD
+#define FIELD_SIZE 16
+uint8_t sine_field_g[FIELD_SIZE * FIELD_SIZE];
+#endif
 
 static void clock_init(void) {
 	rcc_clock_setup_in_hsi_out_48mhz();
@@ -48,7 +58,24 @@ int main(void) {
 	int led_count = 0;
 
 	clock_init();
+/*
+	game_of_life_init(&game_of_life, 8, 8, game_of_life_playfield_a, game_of_life_playfield_b);
+	game_of_life_set_cell(&game_of_life, 0, 0, true);
+	game_of_life_set_cell(&game_of_life, 1, 0, true);
+	game_of_life_set_cell(&game_of_life, 2, 0, true);
+	game_of_life_set_cell(&game_of_life, 2, 1, true);
+	game_of_life_set_cell(&game_of_life, 1, 2, true);
+*/
+	game_of_life_init(&game_of_life, 64, 64, game_of_life_playfield_a, game_of_life_playfield_b);
+	game_of_life_set_cell(&game_of_life, 1, 0 + 3, true);
+	game_of_life_set_cell(&game_of_life, 3, 1 + 3, true);
+	game_of_life_set_cell(&game_of_life, 0, 2 + 3, true);
+	game_of_life_set_cell(&game_of_life, 1, 2 + 3, true);
+	game_of_life_set_cell(&game_of_life, 4, 2 + 3, true);
+	game_of_life_set_cell(&game_of_life, 5, 2 + 3, true);
+	game_of_life_set_cell(&game_of_life, 6, 2 + 3, true);
 
+#ifdef SINE_FIELD
 	/* Generate sine field */
 	for (int y = 0; y < FIELD_SIZE; y++) {
 		for (int x = 0; x < FIELD_SIZE; x++) {
@@ -59,7 +86,10 @@ int main(void) {
 			sine_field_g[y * FIELD_SIZE + x] = gamma8[(uint8_t)roundf(fabs(prod * 255))];
 		}
 	}
+#endif
 
+	unsigned int num_sim_steps = 0;
+	unsigned int game_row = 0;
 	while(1) {
 		uint8_t x, y, bit;
 
@@ -69,7 +99,8 @@ int main(void) {
 			led_count++;
 			led_count %= 64;
 			fb_g[led_count] = 255;
-#else
+#endif
+#ifdef SINE_FIELD
 			for (y = 0; y < 8; y++) {
 				for (x = 0; x < 8; x++) {
 					int x_wrapped = (off_x + x) % FIELD_SIZE;
@@ -83,6 +114,33 @@ int main(void) {
 			off_y %= FIELD_SIZE;
 #endif
 		}
+
+#ifdef GAME_OF_LIFE
+		game_row = game_of_life_step_row(&game_of_life, game_row);
+		if (!game_row) {
+			for (y = 0; y < 8; y++) {
+				for (x = 0; x < 8; x++) {
+					unsigned int num_alive_cells = game_of_life_count_alive_cells_in_area(&game_of_life, x * 8, y * 8, x * 8 + 8, y * 8 + 8);
+					if (num_alive_cells) {
+						fb_g[y * 8 + x] = num_alive_cells * 4 - 1;
+					} else {
+						fb_g[y * 8 + x] = 0;
+					}
+				}
+			}
+	/*
+			for (y = 0; y < 8; y++) {
+				for (x = 0; x < 8; x++) {
+					if (game_of_life_get_cell(&game_of_life, x, y)) {
+						fb_g[y * 8 + x] = 255;
+					} else {
+						fb_g[y * 8 + x] = 0;
+					}
+				}
+			}
+	*/
+		}
+#endif
 
 		/* 8 loop cycles for 8 bits, exponentially increasing duration */
 		for (bit = 0; bit < 8; bit++) {
