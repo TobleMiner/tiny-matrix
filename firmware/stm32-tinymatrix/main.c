@@ -6,8 +6,10 @@
 #define M_PI 3.14159265358979323846264338328
 
 
-#include <libopencm3/stm32/rcc.h>
+#include <libopencm3/cm3/nvic.h>
 #include <libopencm3/stm32/gpio.h>
+#include <libopencm3/stm32/rcc.h>
+#include <libopencm3/stm32/timer.h>
 
 #include "game_of_life.h"
 
@@ -29,11 +31,11 @@ const uint8_t gamma8[] = {
   177,180,182,184,186,189,191,193,196,198,200,203,205,208,210,213,
   215,218,220,223,225,228,231,233,236,239,241,244,247,249,252,255 };
 
-uint8_t fb_g[8 * 8] = { 0 };
+static volatile uint8_t fb_g[8 * 8] = { 0 };
 
-uint8_t game_of_life_playfield_a[64 * 64 / 8] = { 0 };
-uint8_t game_of_life_playfield_b[64 * 64 / 8] = { 0 };
-game_of_life_t game_of_life;
+static uint8_t game_of_life_playfield_a[64 * 64 / 8] = { 0 };
+static uint8_t game_of_life_playfield_b[64 * 64 / 8] = { 0 };
+static game_of_life_t game_of_life;
 
 #define FIELD_COMPRESSION 1
 
@@ -42,22 +44,40 @@ game_of_life_t game_of_life;
 //#define SINE_FIELD
 #define GAME_OF_LIFE
 
+#define IRQ_DRIVEN_DISPLAY
+
 #ifdef SINE_FIELD
 #define FIELD_SIZE 16
 uint8_t sine_field_g[FIELD_SIZE * FIELD_SIZE];
 #endif
 
+volatile bool display_done = false;
+
 static void clock_init(void) {
 	rcc_clock_setup_in_hsi_out_48mhz();
 	rcc_periph_clock_enable(RCC_GPIOA);
 	rcc_periph_clock_enable(RCC_GPIOB);
+	rcc_periph_clock_enable(RCC_TIM1);
+	nvic_enable_irq(NVIC_TIM1_BRK_UP_TRG_COM_IRQ);
+	timer_enable_irq(TIM1, TIM_DIER_UIE);
+	timer_direction_down(TIM1);
+	timer_set_prescaler(TIM1, rcc_apb1_frequency / 1000000UL);
+	TIM1_CNT = 8;
+	timer_enable_counter(TIM1);
 }
+
+#define TIM14 TIM14_BASE
 
 int main(void) {
 	int off_x = 0, off_y = 0, cycles = 0;
 	int led_count = 0;
 
 	clock_init();
+	for (unsigned int i = 0; i < 64; i++) {
+		fb_g[i] = 0xff;
+	}
+
+#ifdef GAME_OF_LIFE
 /*
 	game_of_life_init(&game_of_life, 8, 8, game_of_life_playfield_a, game_of_life_playfield_b);
 	game_of_life_set_cell(&game_of_life, 0, 0, true);
@@ -74,6 +94,7 @@ int main(void) {
 	game_of_life_set_cell(&game_of_life, 4, 2 + 3, true);
 	game_of_life_set_cell(&game_of_life, 5, 2 + 3, true);
 	game_of_life_set_cell(&game_of_life, 6, 2 + 3, true);
+#endif
 
 #ifdef SINE_FIELD
 	/* Generate sine field */
@@ -93,13 +114,16 @@ int main(void) {
 	while(1) {
 		uint8_t x, y, bit;
 
-		if (!cycles) {
 #ifdef LED_TEST
+		if (display_done) {
 			fb_g[led_count] = 0;
 			led_count++;
 			led_count %= 64;
 			fb_g[led_count] = 255;
+			display_done = false;
+		}
 #endif
+		if (!cycles) {
 #ifdef SINE_FIELD
 			for (y = 0; y < 8; y++) {
 				for (x = 0; x < 8; x++) {
@@ -113,9 +137,22 @@ int main(void) {
 			off_x %= FIELD_SIZE;
 			off_y %= FIELD_SIZE;
 #endif
+			cycles++;
 		}
 
 #ifdef GAME_OF_LIFE
+		game_of_life_step(&game_of_life);
+		for (y = 0; y < 8; y++) {
+			for (x = 0; x < 8; x++) {
+				unsigned int num_alive_cells = game_of_life_count_alive_cells_in_area(&game_of_life, x * 8, y * 8, x * 8 + 8, y * 8 + 8);
+				if (num_alive_cells) {
+					fb_g[y * 8 + x] = num_alive_cells * 4 - 1;
+				} else {
+					fb_g[y * 8 + x] = 0;
+				}
+			}
+		}
+/*
 		game_row = game_of_life_step_row(&game_of_life, game_row);
 		if (!game_row) {
 			for (y = 0; y < 8; y++) {
@@ -128,7 +165,7 @@ int main(void) {
 					}
 				}
 			}
-	/*
+
 			for (y = 0; y < 8; y++) {
 				for (x = 0; x < 8; x++) {
 					if (game_of_life_get_cell(&game_of_life, x, y)) {
@@ -138,15 +175,16 @@ int main(void) {
 					}
 				}
 			}
-	*/
 		}
+*/
 #endif
 
+#ifndef IRQ_DRIVEN_DISPLAY
 		/* 8 loop cycles for 8 bits, exponentially increasing duration */
 		for (bit = 0; bit < 8; bit++) {
 			/* display is multiplexed over rows */
 			for (y = 0; y < 8; y++) {
-				int i;
+				unsigned int i;
 				uint16_t row = 0;
 
 				for (x = 0; x < 8; x++) {
@@ -168,12 +206,17 @@ int main(void) {
 				gpio_mode_setup(GPIOA, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, row | (1 << y));
 				/* Set output values */
 				gpio_port_write(GPIOA, row);
-				/* Wait for brightness bit to be displayed */
-				for (i = 0; i < (16 << bit); i++) __asm("nop;");
+
+				for (i = 0; i < (16U << bit); i++) __asm("nop;");
 			}
 		}
-
-		cycles++;
+#endif
+/*
+		if (display_done) {
+			display_done = false;
+			cycles++;
+		}
+*/
 #ifdef LED_TEST
 		cycles %= 30;
 #else
@@ -183,3 +226,47 @@ int main(void) {
 
 	return 0;
 }
+
+#ifdef IRQ_DRIVEN_DISPLAY
+static volatile uint8_t display_bit = 0;
+uint8_t volatile display_y = 0;
+
+void tim1_brk_up_trg_com_isr() {
+	timer_disable_counter(TIM1);
+
+	uint16_t row = 0;
+	for (uint8_t x = 0; x < 8; x++) {
+		/* Set output bit if current brightness bit is set, too */
+		if (fb_g[display_y * 8 + x] & (1 << display_bit)) {
+			row |= (1 << x);
+		}
+	}
+	/* Anode pin mapped to cathode of this row is on PA9 */
+	if (row & (1 << display_y)) {
+		row |= 1 << 9;
+	}
+	row &= ~(1 << display_y);
+	/* Set all outputs to zero to prevent ghosting */
+	gpio_port_write(GPIOA, 0);
+	/* Setup hi-z pins first */
+	gpio_mode_setup(GPIOA, GPIO_MODE_INPUT, GPIO_PUPD_NONE, ~(row | (1 << display_y)) & 0x02ff);
+	/* Setup outputs */
+	gpio_mode_setup(GPIOA, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, row | (1 << display_y));
+	/* Set output values */
+	gpio_port_write(GPIOA, row);
+
+	TIM1_CNT = 8U << display_bit;
+	timer_clear_flag(TIM1, TIM_SR_UIF);
+	timer_enable_counter(TIM1);
+
+	display_y++;
+	if (display_y >= 8) {
+		display_y = 0;
+		display_bit++;
+		if (display_bit >= 8) {
+			display_bit = 0;
+			display_done = true;
+		}
+	}
+}
+#endif
