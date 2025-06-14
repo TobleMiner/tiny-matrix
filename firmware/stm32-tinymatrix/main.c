@@ -12,6 +12,10 @@
 #include <libopencm3/stm32/timer.h>
 
 #include "game_of_life.h"
+#include "rng.h"
+
+#define ARRAY_SIZE(arr_) (sizeof((arr_)) / sizeof(*(arr_)))
+#define ABS(x_) ((x_) > 0 ? (x_) : -(x_))
 
 const uint8_t gamma8[] = {
     0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
@@ -33,10 +37,6 @@ const uint8_t gamma8[] = {
 
 static volatile uint8_t fb_g[8 * 8] = { 0 };
 
-static uint8_t game_of_life_playfield_a[64 * 64 / 8] = { 0 };
-static uint8_t game_of_life_playfield_b[64 * 64 / 8] = { 0 };
-static game_of_life_t game_of_life;
-
 #define FIELD_COMPRESSION 1
 
 /* Cycle through all LEDs, one at a time */
@@ -45,6 +45,15 @@ static game_of_life_t game_of_life;
 #define GAME_OF_LIFE
 
 #define IRQ_DRIVEN_DISPLAY
+
+#ifdef GAME_OF_LIFE
+static uint8_t game_of_life_playfield_a[64 * 64 / 8] = { 0 };
+static uint8_t game_of_life_playfield_b[64 * 64 / 8] = { 0 };
+static game_of_life_t game_of_life;
+static uint8_t population_history_idx = 0;
+static uint16_t population_history[32] = { 0 };
+static uint16_t population_history_downsampler = 0;
+#endif
 
 #ifdef SINE_FIELD
 #define FIELD_SIZE 16
@@ -68,14 +77,22 @@ static void clock_init(void) {
 
 #define TIM14 TIM14_BASE
 
+static void place_acorn(unsigned int x, unsigned int y) {
+	game_of_life_set_cell(&game_of_life, x + 1, y + 0, true);
+	game_of_life_set_cell(&game_of_life, x + 3, y + 1, true);
+	game_of_life_set_cell(&game_of_life, x + 0, y + 2, true);
+	game_of_life_set_cell(&game_of_life, x + 1, y + 2, true);
+	game_of_life_set_cell(&game_of_life, x + 4, y + 2, true);
+	game_of_life_set_cell(&game_of_life, x + 5, y + 2, true);
+	game_of_life_set_cell(&game_of_life, x + 6, y + 2, true);
+}
+
 int main(void) {
 	int off_x = 0, off_y = 0, cycles = 0;
 	int led_count = 0;
 
 	clock_init();
-	for (unsigned int i = 0; i < 64; i++) {
-		fb_g[i] = 0xff;
-	}
+	rng_init(0x42);
 
 #ifdef GAME_OF_LIFE
 /*
@@ -87,13 +104,7 @@ int main(void) {
 	game_of_life_set_cell(&game_of_life, 1, 2, true);
 */
 	game_of_life_init(&game_of_life, 64, 64, game_of_life_playfield_a, game_of_life_playfield_b);
-	game_of_life_set_cell(&game_of_life, 1, 0 + 3, true);
-	game_of_life_set_cell(&game_of_life, 3, 1 + 3, true);
-	game_of_life_set_cell(&game_of_life, 0, 2 + 3, true);
-	game_of_life_set_cell(&game_of_life, 1, 2 + 3, true);
-	game_of_life_set_cell(&game_of_life, 4, 2 + 3, true);
-	game_of_life_set_cell(&game_of_life, 5, 2 + 3, true);
-	game_of_life_set_cell(&game_of_life, 6, 2 + 3, true);
+	place_acorn(29, 31);
 #endif
 
 #ifdef SINE_FIELD
@@ -142,13 +153,36 @@ int main(void) {
 
 #ifdef GAME_OF_LIFE
 		game_of_life_step(&game_of_life);
+		unsigned int total_alive_cells = 0;
 		for (y = 0; y < 8; y++) {
 			for (x = 0; x < 8; x++) {
 				unsigned int num_alive_cells = game_of_life_count_alive_cells_in_area(&game_of_life, x * 8, y * 8, x * 8 + 8, y * 8 + 8);
+				total_alive_cells += num_alive_cells;
 				if (num_alive_cells) {
 					fb_g[y * 8 + x] = num_alive_cells * 4 - 1;
 				} else {
 					fb_g[y * 8 + x] = 0;
+				}
+			}
+		}
+
+		population_history_downsampler++;
+		if (population_history_downsampler >= 4) {
+			population_history_downsampler = 0;
+			population_history[population_history_idx++] = total_alive_cells;
+
+			if (population_history_idx == ARRAY_SIZE(population_history)) {
+				population_history_idx = 0;
+
+				unsigned int population_delta = 0;
+				for (unsigned int i = 0; i < ARRAY_SIZE(population_history) - 1; i++) {
+					population_delta += ABS((int)population_history[i] - (int)population_history[i + 1]);
+				}
+
+				if (population_delta < game_of_life.width * game_of_life.height / 10) {
+					uint32_t pos_x = rng_u32() % (game_of_life.width - 10);
+					uint32_t pos_y = rng_u32() % (game_of_life.height - 5);
+					place_acorn(pos_x, pos_y);
 				}
 			}
 		}
