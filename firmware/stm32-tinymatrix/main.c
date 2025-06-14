@@ -53,6 +53,7 @@ static game_of_life_t game_of_life;
 static uint8_t population_history_idx = 0;
 static uint16_t population_history[32] = { 0 };
 static uint16_t population_history_downsampler = 0;
+static uint16_t population_randomization_cnt = 0;
 #endif
 
 #ifdef SINE_FIELD
@@ -185,6 +186,14 @@ int main(void) {
 					place_acorn(pos_x, pos_y);
 				}
 			}
+		}
+
+		population_randomization_cnt++;
+		if (population_randomization_cnt >= 60UL * 300) {
+			population_randomization_cnt = 0;
+			uint32_t pos_x = rng_u32() % (game_of_life.width - 10);
+			uint32_t pos_y = rng_u32() % (game_of_life.height - 5);
+			place_acorn(pos_x, pos_y);
 		}
 /*
 		game_row = game_of_life_step_row(&game_of_life, game_row);
