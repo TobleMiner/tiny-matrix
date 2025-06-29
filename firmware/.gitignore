@@ -1,5 +1,6 @@
 bin/
 *.elf
 *.bin
+*.out
 generated.*.ld
 *.gdb_history
