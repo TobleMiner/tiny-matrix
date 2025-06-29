@@ -14,17 +14,18 @@ void game_of_life_vec32_init(game_of_life_vec32_t *game) {
 #define ROW2(arr_, y_) ROW(arr_, 1, y_)
 
 void game_of_life_vec32_step(game_of_life_vec32_t *game) {
-	uint32_t row_above[2], row[2], row_below[2];
+	uint32_t row_above[GAME_OF_LIFE_VEC32_WIDTH32], row[GAME_OF_LIFE_VEC32_WIDTH32], row_below[GAME_OF_LIFE_VEC32_WIDTH32];
 	const uint32_t *playfield_src = game->playfield_a;
 	uint32_t *playfield_dst = game->playfield_b;
 
-	row_above[0] = ROW1(playfield_src, GAME_OF_LIFE_VEC32_HEIGHT - 1);
-	row_above[1] = ROW2(playfield_src, GAME_OF_LIFE_VEC32_HEIGHT - 1);
-	row[0] = ROW1(playfield_src, 0);
-	row[1] = ROW2(playfield_src, 0);
+	for (unsigned int x32 = 0; x32 < GAME_OF_LIFE_VEC32_WIDTH32; x32++) {
+		row_above[x32] = ROW(playfield_src, x32, GAME_OF_LIFE_VEC32_HEIGHT - 1);
+		row[x32] = ROW(playfield_src, x32, 0);
+	}
 	for (uint8_t y = 0; y < GAME_OF_LIFE_VEC32_HEIGHT; y++) {
-		row_below[0] = ROW1(playfield_src, (y + 1) % GAME_OF_LIFE_VEC32_HEIGHT);
-		row_below[1] = ROW2(playfield_src, (y + 1) % GAME_OF_LIFE_VEC32_HEIGHT);
+		for (unsigned int x32 = 0; x32 < GAME_OF_LIFE_VEC32_WIDTH32; x32++) {
+			row_below[x32] = ROW(playfield_src, x32, (y + 1) % GAME_OF_LIFE_VEC32_HEIGHT);
+		}
 
 		uint8_t prev_x32 = 1;
 		for (uint8_t x32 = 0; x32 < GAME_OF_LIFE_VEC32_WIDTH32; x32++) {
@@ -110,10 +111,8 @@ void game_of_life_vec32_step(game_of_life_vec32_t *game) {
 			prev_x32 = x32;
 		}
 
-		row_above[0] = row[0];
-		row_above[1] = row[1];
-		row[0] = row_below[0];
-		row[1] = row_below[1];
+		memcpy(row_above, row, sizeof(row_above));
+		memcpy(row, row_below, sizeof(row));
 	}
 
 	game->playfield_b = game->playfield_a;
