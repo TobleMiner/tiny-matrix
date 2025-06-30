@@ -8,6 +8,7 @@
 
 #include <libopencm3/cm3/nvic.h>
 #include <libopencm3/stm32/gpio.h>
+#include <libopencm3/stm32/pwr.h>
 #include <libopencm3/stm32/rcc.h>
 #include <libopencm3/stm32/timer.h>
 
@@ -61,33 +62,19 @@ uint8_t sine_field_g[FIELD_SIZE * FIELD_SIZE];
 
 volatile bool display_done = false;
 
-const struct rcc_clock_scale rcc_config_8MHz = { /* 8MHz PLL from HSI */
-	.pll_source = RCC_CFGR_PLLSRC_HSI16_CLK,
-	.pll_mul = RCC_CFGR_PLLMUL_MUL6,
-	.pll_div = RCC_CFGR_PLLDIV_DIV3,
-	.hpre = RCC_CFGR_HPRE_NODIV,
-	.ppre1 = RCC_CFGR_PPRE_NODIV,
-	.ppre2 = RCC_CFGR_PPRE_NODIV,
-	.voltage_scale = PWR_SCALE1,
-	.flash_waitstates = 0,
-	.ahb_frequency  = 8000000,
-	.apb1_frequency = 8000000,
-	.apb2_frequency = 8000000,
-};
-
 static void clock_init(void) {
-	//rcc_clock_setup_in_hsi_out_48mhz();
-/*
+	rcc_osc_on(RCC_HSI16);
 	rcc_set_hpre(RCC_CFGR_HPRE_DIV2);
-	rcc_apb1_frequency /= 2;
-	rcc_ahb_frequency /= 2;
-*/
-	RCC_CR |= RCC_CR_HSI16DIVEN;
-	rcc_clock_setup_pll(&rcc_config_8MHz);
-//	RCC_ICSCR = (RCC_ICSCR & ~(RCC_ICSCR_MSIRANGE_MASK << RCC_ICSCR_MSIRANGE_MASK)) | (RCC_ICSCR_MSIRANGE_4MHZ << RCC_ICSCR_MSIRANGE_MASK);
-//	rcc_ahb_frequency  = 4000000;
-//	rcc_apb1_frequency = 4000000;
-//	rcc_apb2_frequency = 4000000;
+	rcc_set_ppre1(RCC_CFGR_PPRE_NODIV);
+	rcc_set_ppre2(RCC_CFGR_HPRE_DIV8);
+	rcc_periph_clock_enable(RCC_PWR);
+	pwr_set_vos_scale(PWR_SCALE1);
+	rcc_ahb_frequency  = 8000000;
+	rcc_apb1_frequency = 8000000;
+	rcc_apb2_frequency = 1000000;
+	rcc_wait_for_osc_ready(RCC_HSI16);
+	rcc_set_sysclk_source(RCC_HSI16);
+	rcc_osc_off(RCC_MSI);
 	rcc_periph_clock_enable(RCC_GPIOA);
 #ifdef IRQ_DRIVEN_DISPLAY
 	rcc_periph_clock_enable(RCC_TIM2);
@@ -182,7 +169,7 @@ int main(void) {
 		}
 
 		population_history_downsampler++;
-		if (population_history_downsampler >= 4) {
+		if (population_history_downsampler >= 3) {
 			population_history_downsampler = 0;
 			population_history[population_history_idx++] = total_alive_cells;
 
@@ -203,7 +190,7 @@ int main(void) {
 		}
 
 		population_randomization_cnt++;
-		if (population_randomization_cnt >= 60UL * 300) {
+		if (population_randomization_cnt >= 30 * 30) {
 			population_randomization_cnt = 0;
 			uint32_t pos_x = rng_u32() % (GAME_OF_LIFE_VEC32_WIDTH - 10);
 			uint32_t pos_y = rng_u32() % (GAME_OF_LIFE_VEC32_HEIGHT - 5);
