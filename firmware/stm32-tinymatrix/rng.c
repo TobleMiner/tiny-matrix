@@ -1,7 +1,6 @@
 #include "rng.h"
 
-#include <libopencm3/stm32/rcc.h>
-#include <libopencm3/stm32/adc.h>
+#include <libopencm3/cm3/systick.h>
 
 #define RNG_LFSR_TAPS 0x04C11DB7
 
@@ -22,23 +21,17 @@ static void rng_update(const void *data, unsigned int len) {
 }
 
 void rng_init(uint32_t seed) {
-	rcc_periph_clock_enable(RCC_ADC1);
-/*
-	adc_calibrate(ADC1);
-	adc_set_sample_time_on_all_channels(ADC1, ADC_SMPR_SMP_39DOT5CYC);
-	uint8_t conversion_channels[] = { 9 };
-	adc_set_regular_sequence(ADC1, sizeof(conversion_channels), conversion_channels);
-//	ADC_CFGR2 |= ADC_CLKSOURCE_PCLK_DIV4;
-	adc_power_on(ADC1);
-	adc_start_conversion_regular(ADC1);
-*/
+	systick_set_clocksource(STK_CSR_CLKSOURCE_EXT);
+	systick_set_reload(0xffffff);
+	systick_clear();
+	systick_counter_enable();
 	rng_update(&seed, 4);
 }
 
 uint32_t rng_u32(void) {
 	uint32_t res = rng_state;
-	uint16_t adc_data = adc_read_regular(ADC1);
-	rng_update(&adc_data, sizeof(adc_data));
+	uint32_t systick_data = systick_get_value();
+	rng_update(&systick_data, sizeof(systick_data));
 	return res;
 }
 
