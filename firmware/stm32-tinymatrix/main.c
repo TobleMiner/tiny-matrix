@@ -62,7 +62,12 @@ uint8_t sine_field_g[FIELD_SIZE * FIELD_SIZE];
 volatile bool display_done = false;
 
 static void clock_init(void) {
-	rcc_clock_setup_in_hsi_out_48mhz();
+	//rcc_clock_setup_in_hsi_out_48mhz();
+/*
+	rcc_set_hpre(RCC_CFGR_HPRE_DIV2);
+	rcc_apb1_frequency /= 2;
+	rcc_ahb_frequency /= 2;
+*/
 	rcc_periph_clock_enable(RCC_GPIOA);
 	rcc_periph_clock_enable(RCC_GPIOB);
 	rcc_periph_clock_enable(RCC_TIM1);
@@ -150,7 +155,7 @@ int main(void) {
 				uint8_t num_alive_cells = game_of_life_vec32_count_alive_cells_in_8x8_aligned_area(&game_of_life, x * 8, y * 8);
 				total_alive_cells += num_alive_cells;
 				if (num_alive_cells) {
-					fb_g[y * 8 + x] = num_alive_cells * 4 - 1;
+					fb_g[y * 8 + x] = num_alive_cells - 1;
 				} else {
 					fb_g[y * 8 + x] = 0;
 				}
@@ -263,7 +268,7 @@ void tim1_brk_up_trg_com_isr() {
 	/* Set output values */
 	gpio_port_write(GPIOA, row);
 
-	TIM1_CNT = 8U << display_bit;
+	TIM1_CNT = 16U << display_bit;
 	timer_clear_flag(TIM1, TIM_SR_UIF);
 	timer_enable_counter(TIM1);
 
@@ -271,7 +276,7 @@ void tim1_brk_up_trg_com_isr() {
 	if (display_y >= 8) {
 		display_y = 0;
 		display_bit++;
-		if (display_bit >= 8) {
+		if (display_bit >= 6) {
 			display_bit = 0;
 			display_done = true;
 		}
