@@ -68,7 +68,7 @@ static void clock_init(void) {
 	rcc_set_ppre1(RCC_CFGR_PPRE_NODIV);
 	rcc_set_ppre2(RCC_CFGR_HPRE_DIV8);
 	rcc_periph_clock_enable(RCC_PWR);
-	pwr_set_vos_scale(PWR_SCALE1);
+	pwr_set_vos_scale(PWR_SCALE2);
 	rcc_ahb_frequency  = 8000000;
 	rcc_apb1_frequency = 8000000;
 	rcc_apb2_frequency = 1000000;
