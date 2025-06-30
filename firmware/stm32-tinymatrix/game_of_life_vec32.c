@@ -134,3 +134,17 @@ bool game_of_life_vec32_get_cell(game_of_life_vec32_t *game, unsigned int x, uns
 
 	return !!(ROW(playfield_src, x / 32, y) & (1UL << (x % 32)));
 }
+
+uint8_t game_of_life_vec32_count_alive_cells_in_8x8_aligned_area(game_of_life_vec32_t *game, unsigned int x, unsigned int y) {
+	const uint8_t *playfield8 = (const uint8_t *)game->playfield_a;
+	uint8_t alive_cells = 0;
+
+	for (uint8_t y_offset = 0; y_offset < 8; y_offset++) {
+		unsigned int pos_y = y + y_offset;
+		unsigned int byte_pos = pos_y * GAME_OF_LIFE_VEC32_WIDTH / 8 + x / 8;
+		uint8_t row8 = playfield8[byte_pos];
+		alive_cells += __builtin_popcount(row8);
+	}
+
+	return alive_cells;
+}
