@@ -11,7 +11,7 @@
 #include <libopencm3/stm32/rcc.h>
 #include <libopencm3/stm32/timer.h>
 
-#include "game_of_life.h"
+#include "game_of_life_vec32.h"
 #include "rng.h"
 
 #define ARRAY_SIZE(arr_) (sizeof((arr_)) / sizeof(*(arr_)))
@@ -47,9 +47,7 @@ static volatile uint8_t fb_g[8 * 8] = { 0 };
 #define IRQ_DRIVEN_DISPLAY
 
 #ifdef GAME_OF_LIFE
-static uint8_t game_of_life_playfield_a[64 * 64 / 8] = { 0 };
-static uint8_t game_of_life_playfield_b[64 * 64 / 8] = { 0 };
-static game_of_life_t game_of_life;
+static game_of_life_vec32_t game_of_life;
 static uint8_t population_history_idx = 0;
 static uint16_t population_history[32] = { 0 };
 static uint16_t population_history_downsampler = 0;
@@ -79,13 +77,13 @@ static void clock_init(void) {
 #define TIM14 TIM14_BASE
 
 static void place_acorn(unsigned int x, unsigned int y) {
-	game_of_life_set_cell(&game_of_life, x + 1, y + 0, true);
-	game_of_life_set_cell(&game_of_life, x + 3, y + 1, true);
-	game_of_life_set_cell(&game_of_life, x + 0, y + 2, true);
-	game_of_life_set_cell(&game_of_life, x + 1, y + 2, true);
-	game_of_life_set_cell(&game_of_life, x + 4, y + 2, true);
-	game_of_life_set_cell(&game_of_life, x + 5, y + 2, true);
-	game_of_life_set_cell(&game_of_life, x + 6, y + 2, true);
+	game_of_life_vec32_set_cell(&game_of_life, x + 1, y + 0, true);
+	game_of_life_vec32_set_cell(&game_of_life, x + 3, y + 1, true);
+	game_of_life_vec32_set_cell(&game_of_life, x + 0, y + 2, true);
+	game_of_life_vec32_set_cell(&game_of_life, x + 1, y + 2, true);
+	game_of_life_vec32_set_cell(&game_of_life, x + 4, y + 2, true);
+	game_of_life_vec32_set_cell(&game_of_life, x + 5, y + 2, true);
+	game_of_life_vec32_set_cell(&game_of_life, x + 6, y + 2, true);
 }
 
 int main(void) {
@@ -96,15 +94,7 @@ int main(void) {
 	rng_init(0x42);
 
 #ifdef GAME_OF_LIFE
-/*
-	game_of_life_init(&game_of_life, 8, 8, game_of_life_playfield_a, game_of_life_playfield_b);
-	game_of_life_set_cell(&game_of_life, 0, 0, true);
-	game_of_life_set_cell(&game_of_life, 1, 0, true);
-	game_of_life_set_cell(&game_of_life, 2, 0, true);
-	game_of_life_set_cell(&game_of_life, 2, 1, true);
-	game_of_life_set_cell(&game_of_life, 1, 2, true);
-*/
-	game_of_life_init(&game_of_life, 64, 64, game_of_life_playfield_a, game_of_life_playfield_b);
+	game_of_life_vec32_init(&game_of_life);
 	place_acorn(29, 31);
 #endif
 
@@ -153,11 +143,11 @@ int main(void) {
 		}
 
 #ifdef GAME_OF_LIFE
-		game_of_life_step(&game_of_life);
+		game_of_life_vec32_step(&game_of_life);
 		unsigned int total_alive_cells = 0;
 		for (y = 0; y < 8; y++) {
 			for (x = 0; x < 8; x++) {
-				unsigned int num_alive_cells = game_of_life_count_alive_cells_in_area(&game_of_life, x * 8, y * 8, x * 8 + 8, y * 8 + 8);
+				uint8_t num_alive_cells = game_of_life_vec32_count_alive_cells_in_8x8_aligned_area(&game_of_life, x * 8, y * 8);
 				total_alive_cells += num_alive_cells;
 				if (num_alive_cells) {
 					fb_g[y * 8 + x] = num_alive_cells * 4 - 1;
@@ -180,9 +170,9 @@ int main(void) {
 					population_delta += ABS((int)population_history[i] - (int)population_history[i + 1]);
 				}
 
-				if (population_delta < game_of_life.width * game_of_life.height / 10) {
-					uint32_t pos_x = rng_u32() % (game_of_life.width - 10);
-					uint32_t pos_y = rng_u32() % (game_of_life.height - 5);
+				if (population_delta < GAME_OF_LIFE_VEC32_WIDTH * GAME_OF_LIFE_VEC32_HEIGHT / 10) {
+					uint32_t pos_x = rng_u32() % (GAME_OF_LIFE_VEC32_WIDTH - 10);
+					uint32_t pos_y = rng_u32() % (GAME_OF_LIFE_VEC32_HEIGHT - 5);
 					place_acorn(pos_x, pos_y);
 				}
 			}
@@ -191,35 +181,10 @@ int main(void) {
 		population_randomization_cnt++;
 		if (population_randomization_cnt >= 60UL * 300) {
 			population_randomization_cnt = 0;
-			uint32_t pos_x = rng_u32() % (game_of_life.width - 10);
-			uint32_t pos_y = rng_u32() % (game_of_life.height - 5);
+			uint32_t pos_x = rng_u32() % (GAME_OF_LIFE_VEC32_WIDTH - 10);
+			uint32_t pos_y = rng_u32() % (GAME_OF_LIFE_VEC32_HEIGHT - 5);
 			place_acorn(pos_x, pos_y);
 		}
-/*
-		game_row = game_of_life_step_row(&game_of_life, game_row);
-		if (!game_row) {
-			for (y = 0; y < 8; y++) {
-				for (x = 0; x < 8; x++) {
-					unsigned int num_alive_cells = game_of_life_count_alive_cells_in_area(&game_of_life, x * 8, y * 8, x * 8 + 8, y * 8 + 8);
-					if (num_alive_cells) {
-						fb_g[y * 8 + x] = num_alive_cells * 4 - 1;
-					} else {
-						fb_g[y * 8 + x] = 0;
-					}
-				}
-			}
-
-			for (y = 0; y < 8; y++) {
-				for (x = 0; x < 8; x++) {
-					if (game_of_life_get_cell(&game_of_life, x, y)) {
-						fb_g[y * 8 + x] = 255;
-					} else {
-						fb_g[y * 8 + x] = 0;
-					}
-				}
-			}
-		}
-*/
 #endif
 
 #ifndef IRQ_DRIVEN_DISPLAY
