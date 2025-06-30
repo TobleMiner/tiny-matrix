@@ -22,20 +22,22 @@ static void rng_update(const void *data, unsigned int len) {
 }
 
 void rng_init(uint32_t seed) {
-	rcc_periph_clock_enable(RCC_ADC);
-	adc_calibrate(ADC);
-	adc_set_sample_time_on_all_channels(ADC, ADC_SMPTIME_239DOT5);
+	rcc_periph_clock_enable(RCC_ADC1);
+/*
+	adc_calibrate(ADC1);
+	adc_set_sample_time_on_all_channels(ADC1, ADC_SMPR_SMP_39DOT5CYC);
 	uint8_t conversion_channels[] = { 9 };
-	adc_set_regular_sequence(ADC, sizeof(conversion_channels), conversion_channels);
-	ADC1_CFGR2 |= ADC_CLKSOURCE_PCLK_DIV4;
-	adc_power_on(ADC);
-	adc_start_conversion_regular(ADC);
+	adc_set_regular_sequence(ADC1, sizeof(conversion_channels), conversion_channels);
+//	ADC_CFGR2 |= ADC_CLKSOURCE_PCLK_DIV4;
+	adc_power_on(ADC1);
+	adc_start_conversion_regular(ADC1);
+*/
 	rng_update(&seed, 4);
 }
 
 uint32_t rng_u32(void) {
 	uint32_t res = rng_state;
-	uint16_t adc_data = adc_read_regular(ADC);
+	uint16_t adc_data = adc_read_regular(ADC1);
 	rng_update(&adc_data, sizeof(adc_data));
 	return res;
 }

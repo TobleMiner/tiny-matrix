@@ -61,6 +61,20 @@ uint8_t sine_field_g[FIELD_SIZE * FIELD_SIZE];
 
 volatile bool display_done = false;
 
+const struct rcc_clock_scale rcc_config_8MHz = { /* 8MHz PLL from HSI */
+	.pll_source = RCC_CFGR_PLLSRC_HSI16_CLK,
+	.pll_mul = RCC_CFGR_PLLMUL_MUL6,
+	.pll_div = RCC_CFGR_PLLDIV_DIV3,
+	.hpre = RCC_CFGR_HPRE_NODIV,
+	.ppre1 = RCC_CFGR_PPRE_NODIV,
+	.ppre2 = RCC_CFGR_PPRE_NODIV,
+	.voltage_scale = PWR_SCALE1,
+	.flash_waitstates = 0,
+	.ahb_frequency  = 8000000,
+	.apb1_frequency = 8000000,
+	.apb2_frequency = 8000000,
+};
+
 static void clock_init(void) {
 	//rcc_clock_setup_in_hsi_out_48mhz();
 /*
@@ -68,19 +82,25 @@ static void clock_init(void) {
 	rcc_apb1_frequency /= 2;
 	rcc_ahb_frequency /= 2;
 */
+	RCC_CR |= RCC_CR_HSI16DIVEN;
+	rcc_clock_setup_pll(&rcc_config_8MHz);
+//	RCC_ICSCR = (RCC_ICSCR & ~(RCC_ICSCR_MSIRANGE_MASK << RCC_ICSCR_MSIRANGE_MASK)) | (RCC_ICSCR_MSIRANGE_4MHZ << RCC_ICSCR_MSIRANGE_MASK);
+//	rcc_ahb_frequency  = 4000000;
+//	rcc_apb1_frequency = 4000000;
+//	rcc_apb2_frequency = 4000000;
 	rcc_periph_clock_enable(RCC_GPIOA);
-	rcc_periph_clock_enable(RCC_GPIOB);
-	rcc_periph_clock_enable(RCC_TIM1);
-	nvic_enable_irq(NVIC_TIM1_BRK_UP_TRG_COM_IRQ);
-	timer_enable_irq(TIM1, TIM_DIER_UIE);
-	timer_direction_down(TIM1);
-	timer_set_prescaler(TIM1, rcc_apb1_frequency / 1000000UL);
-	TIM1_CNT = 8;
-	timer_enable_counter(TIM1);
+#ifdef IRQ_DRIVEN_DISPLAY
+	rcc_periph_clock_enable(RCC_TIM2);
+	nvic_enable_irq(NVIC_TIM2_IRQ);
+	timer_enable_irq(TIM2, TIM_DIER_UIE);
+	timer_direction_down(TIM2);
+	timer_set_prescaler(TIM2, rcc_apb1_frequency / 1000000UL);
+	TIM2_CNT = 8;
+	timer_enable_counter(TIM2);
+#endif
 }
 
-#define TIM14 TIM14_BASE
-
+#ifdef GAME_OF_LIFE
 static void place_acorn(unsigned int x, unsigned int y) {
 	game_of_life_vec32_set_cell(&game_of_life, x + 1, y + 0, true);
 	game_of_life_vec32_set_cell(&game_of_life, x + 3, y + 1, true);
@@ -90,6 +110,7 @@ static void place_acorn(unsigned int x, unsigned int y) {
 	game_of_life_vec32_set_cell(&game_of_life, x + 5, y + 2, true);
 	game_of_life_vec32_set_cell(&game_of_life, x + 6, y + 2, true);
 }
+#endif
 
 int main(void) {
 	int off_x = 0, off_y = 0, cycles = 0;
@@ -116,8 +137,6 @@ int main(void) {
 	}
 #endif
 
-	unsigned int num_sim_steps = 0;
-	unsigned int game_row = 0;
 	while(1) {
 		uint8_t x, y, bit;
 
@@ -223,6 +242,7 @@ int main(void) {
 				for (i = 0; i < (16U << bit); i++) __asm("nop;");
 			}
 		}
+		display_done = true;
 #endif
 /*
 		if (display_done) {
@@ -244,8 +264,8 @@ int main(void) {
 static volatile uint8_t display_bit = 0;
 uint8_t volatile display_y = 0;
 
-void tim1_brk_up_trg_com_isr() {
-	timer_disable_counter(TIM1);
+void tim2_isr() {
+	timer_disable_counter(TIM2);
 
 	uint16_t row = 0;
 	for (uint8_t x = 0; x < 8; x++) {
@@ -268,9 +288,10 @@ void tim1_brk_up_trg_com_isr() {
 	/* Set output values */
 	gpio_port_write(GPIOA, row);
 
-	TIM1_CNT = 16U << display_bit;
-	timer_clear_flag(TIM1, TIM_SR_UIF);
-	timer_enable_counter(TIM1);
+	TIM2_CNT = 24U << display_bit;
+	TIM2_SR = 0;
+//	timer_clear_flag(TIM2, TIM_SR_UIF);
+	timer_enable_counter(TIM2);
 
 	display_y++;
 	if (display_y >= 8) {

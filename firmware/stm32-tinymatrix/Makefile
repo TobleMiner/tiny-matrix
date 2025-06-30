@@ -6,7 +6,7 @@ OPT = -O3
 LDLIBS += -lm
 
 # TODO - you will need to edit these two lines!
-DEVICE=stm32f030f4p6
+DEVICE=stm32l011f3
 OOCD_FILE = board/stm32f4discovery.cfg
 
 # You shouldn't have to edit anything below here.
